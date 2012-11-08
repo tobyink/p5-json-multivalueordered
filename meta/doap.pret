@@ -1,0 +1,19 @@
+# This file contains general metadata about the project.
+
+@prefix : <http://usefulinc.com/ns/doap#>.
+
+`JSON-MultiValueOrdered`
+	:programming-language "Perl" ;
+	:shortdesc            "handle JSON like {\"a\":1, \"a\":2}";
+	:homepage             <https://metacpan.org/release/JSON-MultiValueOrdered>;
+	:download-page        <https://metacpan.org/release/JSON-MultiValueOrdered>;
+	:bug-database         <http://rt.cpan.org/Dist/Display.html?Queue=JSON-MultiValueOrdered>;
+	:repository           [ a :HgRepository; :browse <https://bitbucket.org/tobyink/p5-json-multivalueordered> ];
+	:created              2012-11-08;
+	:license              <http://dev.perl.org/licenses/>;
+	:maintainer           cpan:TOBYINK;
+	:developer            cpan:TOBYINK.
+
+<http://dev.perl.org/licenses/>
+	dc:title  "the same terms as the perl 5 programming language system itself".
+
