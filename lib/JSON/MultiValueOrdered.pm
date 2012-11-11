@@ -1,12 +1,13 @@
 use 5.008;
 use strict;
 use warnings;
+use if $] < 5.010, 'UNIVERSAL::DOES';
 
 {
 	package JSON::MultiValueOrdered;
 	
 	our $AUTHORITY = 'cpan:TOBYINK';
-	our $VERSION   = '0.001';
+	our $VERSION   = '0.002';
 	
 	use base qw(JSON::Tiny::Subclassable);
 	

@@ -6,7 +6,7 @@ use warnings;
 	package Tie::Hash::MultiValueOrdered;
 	
 	our $AUTHORITY = 'cpan:TOBYINK';
-	our $VERSION   = '0.001';
+	our $VERSION   = '0.002';
 	
 	use constant {
 		IDX_DATA  => 0,
