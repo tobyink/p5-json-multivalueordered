@@ -1,3 +1,20 @@
+=head1 PURPOSE
+
+
+
+=head1 AUTHOR
+
+Toby Inkster E<lt>tobyink@cpan.orgE<gt>.
+
+=head1 COPYRIGHT AND LICENCE
+
+This software is copyright (c) 2013 by Toby Inkster.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
 use strict;
 use warnings;
 use Test::More;
@@ -29,6 +46,5 @@ use Test::More;
 	(tied %$r)->fetch_list;
 	::is_deeply($r, { a => [1, 2] });
 }
-
 
 done_testing;

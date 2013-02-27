@@ -177,6 +177,8 @@ request to import it with a different name:
 
    use JSON::MultiValueOrdered j => { -as => 'quick_json' };
 
+=back
+
 =head1 BUGS
 
 Please report any bugs to
