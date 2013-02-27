@@ -11,3 +11,11 @@
 		item "Require UNIVERSAL::DOES on Perl 5.8."^^Change;
 		item "Avoid defined-or operator."^^Change;
 	].
+
+`JSON-MultiValueOrdered 0.003 cpan:TOBYINK`
+	issued  2013-02-27;
+	label   "Perl 5.8 compatibility release";
+	changeset [
+		item "Implement 'j' function as supported by JSON::Tiny."^^Addition;
+		item "Document test suite."^^Documentation;
+	].
