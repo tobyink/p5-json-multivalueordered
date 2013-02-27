@@ -7,12 +7,16 @@ use warnings;
 
 	our $AUTHORITY = 'cpan:TOBYINK';
 	our $VERSION   = '0.002';
-
 	our @ISA       = qw(JSON::Tiny);
 	
 	use B;
-	use Scalar::Util ();
 	use Encode ();
+	use Scalar::Util ();
+	
+	BEGIN {
+		eval { require Sub::Name; Sub::Name->import('subname'); 1 }
+			or eval q{ sub subname { $_[1] } };
+	};
 	
 	sub new {
 		my $class = shift;
@@ -28,6 +32,28 @@ use warnings;
 		$_[0]->{pretty} = $_[1] if @_ > 1;
 		return $_[0]->{pretty};
 	}
+	
+	sub import {
+		my $class  = shift;
+		my $caller = caller;
+		my $opts   = {};
+		while (@_) {
+			my $arg = shift;
+			$opts->{$arg} = ref $_[0] ? shift @_ : undef;
+		}
+		if (exists $opts->{'j'}) {
+			my $func = ((ref $opts->{j} eq 'HASH') && $opts->{j}{-as}) || 'j';
+			no strict 'refs';
+			*{"$caller\::$func"} = subname "$class\::j" => sub {
+				my $d = shift;
+				return $class->new->encode($d) if ref $d eq 'ARRAY' || ref $d eq 'HASH';
+				return $class->new->decode($d);
+			};
+			delete $opts->{'j'};
+		}
+	}
+	
+	__PACKAGE__->import('j');
 	
 	# Literal names
 	my $FALSE = bless \(my $false = 0), 'JSON::Tiny::_Bool';
@@ -141,8 +167,8 @@ use warnings;
 	sub false {$FALSE}
 	sub true  {$TRUE}
 	
-	sub _new_hash  {+{}}
-	sub _new_array {+[]}
+	sub _new_hash  { +{} }
+	sub _new_array { +[] }
 	
 	sub _decode_array {
 		my $self  = shift;
@@ -481,6 +507,21 @@ If set to true, indents generated JSON in a pretty fashion.
 =item C<< DOES($role) >>
 
 As per L<UNIVERSAL>::C<DOES>. Returns true for L<Mojo::DOM>.
+
+=back
+
+=head2 Functions
+
+=over
+
+=item C<< j(\@array) >> / C<< j(\%hash) >> / C<< j($bytes) >>
+
+Encode or decode JSON as applicable.
+
+This function may be exported, but is not exported by default. You may
+request to import it with a different name:
+
+   use JSON::Tiny::Subclassable j => { -as => 'quick_json' };
 
 =back
 

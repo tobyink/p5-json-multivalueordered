@@ -61,6 +61,8 @@ use if $] < 5.010, 'UNIVERSAL::DOES';
 			return '{' . join(',', @pairs) . '}';
 		}
 	}
+	
+	__PACKAGE__->import('j');
 }
 
 1;
@@ -161,6 +163,19 @@ in the superclasses.
 =item C<< true >>
 
 =back
+
+=head2 Functions
+
+=over
+
+=item C<< j(\@array) >> / C<< j(\%hash) >> / C<< j($bytes) >>
+
+Encode or decode JSON as applicable.
+
+This function may be exported, but is not exported by default. You may
+request to import it with a different name:
+
+   use JSON::MultiValueOrdered j => { -as => 'quick_json' };
 
 =head1 BUGS
 
