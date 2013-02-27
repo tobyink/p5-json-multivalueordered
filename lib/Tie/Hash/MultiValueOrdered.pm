@@ -154,57 +154,57 @@ Tie::Hash::MultiValueOrdered - hash with multiple values per key, and ordered ke
 
 =head1 SYNOPSIS
 
-	use Test::More;
-	use Tie::Hash::MultiValueOrdered;
-	
-	my $tied = tie my %hash, "Tie::Hash::MultiValueOrdered";
-	
-	$hash{a} = 1;
-	$hash{b} = 2;
-	$hash{a} = 3;
-	$hash{b} = 4;
-	
-	# Order of keys is predictable
-	is_deeply(
-		[ keys %hash ],
-		[ qw( a b ) ],
-	);
-	
-	# Order of values is predictable
-	# Note that the last values of 'a' and 'b' are returned.
-	is_deeply(
-		[ values %hash ],
-		[ qw( 3 4 ) ],
-	);
-	
-	# Can retrieve list of all key-value pairs
-	is_deeply(
-		[ $tied->pairs ],
-		[ qw( a 1 b 2 a 3 b 4 ) ],
-	);
-	
-	# Switch the retrieval mode for the hash.
-	$tied->fetch_first;
-	
-	# Now the first values of 'a' and 'b' are returned.
-	is_deeply(
-		[ values %hash ],
-		[ qw( 1 2 ) ],
-	);
-	
-	# Switch the retrieval mode for the hash.
-	$tied->fetch_list;
-	
-	# Now arrayrefs are returned.
-	is_deeply(
-		[ values %hash ],
-		[ [1,3], [2,4] ],
-	);
-	
-	# Restore the default retrieval mode for the hash.
-	$tied->fetch_last;
-	
-	done_testing;
+   use Test::More;
+   use Tie::Hash::MultiValueOrdered;
+   
+   my $tied = tie my %hash, "Tie::Hash::MultiValueOrdered";
+   
+   $hash{a} = 1;
+   $hash{b} = 2;
+   $hash{a} = 3;
+   $hash{b} = 4;
+   
+   # Order of keys is predictable
+   is_deeply(
+      [ keys %hash ],
+      [ qw( a b ) ],
+   );
+   
+   # Order of values is predictable
+   # Note that the last values of 'a' and 'b' are returned.
+   is_deeply(
+      [ values %hash ],
+      [ qw( 3 4 ) ],
+   );
+   
+   # Can retrieve list of all key-value pairs
+   is_deeply(
+      [ $tied->pairs ],
+      [ qw( a 1 b 2 a 3 b 4 ) ],
+   );
+   
+   # Switch the retrieval mode for the hash.
+   $tied->fetch_first;
+   
+   # Now the first values of 'a' and 'b' are returned.
+   is_deeply(
+      [ values %hash ],
+      [ qw( 1 2 ) ],
+   );
+   
+   # Switch the retrieval mode for the hash.
+   $tied->fetch_list;
+   
+   # Now arrayrefs are returned.
+   is_deeply(
+      [ values %hash ],
+      [ [1,3], [2,4] ],
+   );
+   
+   # Restore the default retrieval mode for the hash.
+   $tied->fetch_last;
+   
+   done_testing;
 
 =head1 DESCRIPTION
 
@@ -215,7 +215,7 @@ underneath. An explicit C<delete> deletes all values associated with a key.
 By default, the old values are inaccessible through the hash interface, but
 can be retrieved via the tied object:
 
-	my @values = tied(%hash)->get($key);
+   my @values = tied(%hash)->get($key);
 
 However, the C<< fetch_* >> methods provide a means to alter the behaviour of
 the hash.
@@ -274,61 +274,61 @@ The values correponding to C<all_keys>.
 
 This is the default style of fetching.
 
-	tie my %hash, "Tie::Hash::MultiValueOrdered";
-	
-	$hash{a} = 1;
-	$hash{b} = 2;
-	$hash{b} = 3;
-	
-	tied(%hash)->fetch_last;
-	
-	is($hash{a}, 1);
-	is($hash{b}, 3);
+   tie my %hash, "Tie::Hash::MultiValueOrdered";
+   
+   $hash{a} = 1;
+   $hash{b} = 2;
+   $hash{b} = 3;
+   
+   tied(%hash)->fetch_last;
+   
+   is($hash{a}, 1);
+   is($hash{b}, 3);
 
 =item C<< fetch_first >>
 
-	tie my %hash, "Tie::Hash::MultiValueOrdered";
-	
-	$hash{a} = 1;
-	$hash{b} = 2;
-	$hash{b} = 3;
-	
-	tied(%hash)->fetch_first;
-	
-	is($hash{a}, 1);
-	is($hash{b}, 2);
+   tie my %hash, "Tie::Hash::MultiValueOrdered";
+   
+   $hash{a} = 1;
+   $hash{b} = 2;
+   $hash{b} = 3;
+   
+   tied(%hash)->fetch_first;
+   
+   is($hash{a}, 1);
+   is($hash{b}, 2);
 
 =item C<< fetch_list >>
 
-	tie my %hash, "Tie::Hash::MultiValueOrdered";
-	
-	$hash{a} = 1;
-	$hash{b} = 2;
-	$hash{b} = 3;
-	
-	tied(%hash)->fetch_first;
-	
-	is_deeply($hash{a}, [1]);
-	is_deeply($hash{b}, [2, 3]);
+   tie my %hash, "Tie::Hash::MultiValueOrdered";
+   
+   $hash{a} = 1;
+   $hash{b} = 2;
+   $hash{b} = 3;
+   
+   tied(%hash)->fetch_first;
+   
+   is_deeply($hash{a}, [1]);
+   is_deeply($hash{b}, [2, 3]);
 
 =item C<< fetch_iterator >>
 
 This fetch style is experimental and subject to change.
 
-	tie my %hash, "Tie::Hash::MultiValueOrdered";
-	
-	$hash{a} = 1;
-	$hash{b} = 2;
-	$hash{b} = 3;
-	
-	tied(%hash)->fetch_iterator;
-	
-	my $A = $hash{a};
-	my $B = $hash{b};
-	
-	is($A->(), 1);
-	is($B->(), 2);
-	is($B->(), 3);
+   tie my %hash, "Tie::Hash::MultiValueOrdered";
+   
+   $hash{a} = 1;
+   $hash{b} = 2;
+   $hash{b} = 3;
+   
+   tied(%hash)->fetch_iterator;
+   
+   my $A = $hash{a};
+   my $B = $hash{b};
+   
+   is($A->(), 1);
+   is($B->(), 2);
+   is($B->(), 3);
 
 =back
 
