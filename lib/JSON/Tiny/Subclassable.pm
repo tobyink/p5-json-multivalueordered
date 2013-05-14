@@ -400,9 +400,8 @@ use warnings;
 		return 'null' unless defined $value;
 		
 		# Number
-		my $flags = B::svref_2object(\$value)->FLAGS;
-		return $value
-			if $flags & (B::SVp_IOK | B::SVp_NOK) && !($flags & B::SVp_POK);
+		return 0 + $value
+			if B::svref_2object(\$value)->FLAGS & (B::SVp_IOK | B::SVp_NOK);
 		
 		# String
 		return $self->_encode_string($value);
