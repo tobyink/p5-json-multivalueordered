@@ -7,7 +7,7 @@ use if $] < 5.010, 'UNIVERSAL::DOES';
 	package JSON::MultiValueOrdered;
 	
 	our $AUTHORITY = 'cpan:TOBYINK';
-	our $VERSION   = '0.003';
+	our $VERSION   = '0.004';
 	
 	use base qw(JSON::Tiny::Subclassable);
 	

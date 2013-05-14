@@ -14,8 +14,16 @@
 
 `JSON-MultiValueOrdered 0.003 cpan:TOBYINK`
 	issued  2013-02-27;
-	label   "Perl 5.8 compatibility release";
 	changeset [
 		item "Implement 'j' function as supported by JSON::Tiny."^^Addition;
 		item "Document test suite."^^Documentation;
+	].
+
+`JSON-MultiValueOrdered 0.004 cpan:TOBYINK`
+	issued  2013-05-14;
+	changeset [
+		item [
+			label "Changed heuristics for number detection to better line up with user expectations.";
+			comment "Mojolicious commit 9f75c27";
+		];
 	].
