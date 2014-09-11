@@ -27,3 +27,10 @@
 			comment "Mojolicious commit 9f75c27";
 		];
 	].
+
+`JSON-MultiValueOrdered 0.005 cpan:TOBYINK`
+	issued    2014-09-11;
+	changeset [
+		item "Switch to Dist::Inkt."^^Packaging;
+	].
+
