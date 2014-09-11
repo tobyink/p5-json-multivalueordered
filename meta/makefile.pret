@@ -1,9 +1,0 @@
-# This file provides instructions for packaging.
-
-`JSON-MultiValueOrdered`
-	perl_version_from m`JSON::MultiValueOrdered`;
-	version_from      m`JSON::MultiValueOrdered`;
-	readme_from       m`JSON::MultiValueOrdered`;
-	test_requires     p`Test::More 0.61` ;
-	.
-
