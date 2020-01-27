@@ -34,3 +34,9 @@
 		item "Switch to Dist::Inkt."^^Packaging;
 	].
 
+`JSON-MultiValueOrdered 0.006 cpan:TOBYINK`
+	issued    2020-01-27;
+	changeset [
+		item "Tie::Hash::MultiValueOrdered `pairs` and `pair_refs` (and `all_values` which calls them) shouldn't need to deep clone values, just shallow clone the lists of values."^^Change;
+	].
+
